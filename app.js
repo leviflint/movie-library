@@ -4,12 +4,14 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv/config");
 
+app.use(cors());
+app.options("*", cors());
+
 //Import Routes
 const postsRoute = require("./routes/posts");
 
 //Middlewares - function that executes when routes are being hit
-app.use(cors());
-app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/posts", postsRoute);
