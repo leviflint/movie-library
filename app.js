@@ -9,6 +9,7 @@ const postsRoute = require("./routes/posts");
 
 //Middlewares - function that executes when routes are being hit
 app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/posts", postsRoute);
