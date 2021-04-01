@@ -4,14 +4,12 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv/config");
 
-app.use(cors());
-app.options("*", cors());
-
 //Import Routes
 const postsRoute = require("./routes/posts");
 
 //Middlewares - function that executes when routes are being hit
-
+app.use(cors());
+app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/posts", postsRoute);
@@ -22,9 +20,13 @@ app.get("/", (req, res) => {
 });
 
 //Connect to DB
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () => {
-  console.log("Connected to database.");
-});
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log("Connected to database.");
+  }
+);
 
 //Boot server
 app.listen(process.env.PORT || 3000);
