@@ -60,7 +60,7 @@ router.delete("/:postId", async (req, res) => {
   }
 });
 
-//UPDATE A POSTA
+//UPDATE A POST
 router.patch("/:postId", async (req, res) => {
   try {
     const updatedPost = await Post.updateOne(
