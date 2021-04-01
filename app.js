@@ -8,7 +8,7 @@ require("dotenv/config");
 const postsRoute = require("./routes/posts");
 
 //Middlewares - function that executes when routes are being hit
-app.use(cors());
+app.use(cors({origin: new URL('http://localhost:3000'), credentials: true}));
 app.options("*", cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
